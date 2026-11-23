@@ -32,3 +32,7 @@ class Playlist:
   def sort_by_release_year(self):
     # sort the tracks in place using MusicTrack comparison methods
     self._tracks.sort()
+  
+  def __str__(self):
+    # Return each track on its own line.
+    return "\n".join(str(track) for track in self._tracks)
