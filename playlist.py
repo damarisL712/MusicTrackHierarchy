@@ -24,4 +24,11 @@ class Playlist:
   def add_track(self, track):
     # add a track to the playlist
     self._tracks.append(track)
-    
+  
+  def clear_playlist(self):
+    # remove every track from the playlist
+    self._tracks.clear()
+  
+  def sort_by_release_year(self):
+    # sort the tracks in place using MusicTrack comparison methods
+    self._tracks.sort()
