@@ -44,6 +44,6 @@ class Album:
     # return the first year in the years list
     return self._years[0]
 
-  def __str__(Self):
+  def __str__(self):
     # return a readable representation of the album or show
     return f"{self._title} active = {self._active}, debut year: {self.debut_year}"
