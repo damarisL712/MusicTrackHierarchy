@@ -41,3 +41,12 @@ class MusicTrack(ABC):
     def release_year(self):
         # Return the debut year from the Album object.
         return self._album.debut_year
+  
+    @abstractmethod
+    def play_time_formatted(self):
+        # Require each subclass to format its own play time.
+        pass
+
+    def total_play_time(self, num_plays):
+        # Return the total number of seconds for multiple plays.
+        return self._duration_seconds * num_plays
