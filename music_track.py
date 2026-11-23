@@ -19,7 +19,9 @@ Design decisions to implement:
 """
 
 from abc import ABC, abstractmethod
+from functools import total_ordering
 
+@total_ordering
 class MusicTrack(ABC):
   def __init__(self, artist, album, duration_seconds):
     # store the common track infromation
@@ -55,3 +57,11 @@ class MusicTrack(ABC):
   def total_play_time(self, num_plays):
     # Return the total number of seconds for multiple plays.
     return self._duration_seconds * num_plays
+  
+  def __eq__(self, other):
+    # Return True when both tracks have the same release year.
+    return self.release_year == other.release_year
+
+  def __lt__(self, other):
+    # Return True when this track was released before the other track.
+    return self.release_year < other.release_year
