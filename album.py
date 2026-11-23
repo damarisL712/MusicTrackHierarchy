@@ -38,3 +38,12 @@ class Album:
     # return a copy of years list so
     # outside code can't change the inter list directly
     return self._years.copy()
+  
+  @property
+  def debut_year(self):
+    # return the first year in the years list
+    return self._years[0]
+
+  def __str__(Self):
+    # return a readable representation of the album or show
+    return f"{self._title} active = {self._active}, debut year: {self.debut_year}"
