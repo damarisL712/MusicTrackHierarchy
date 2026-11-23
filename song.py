@@ -1,0 +1,41 @@
+"""
+Concrete subclass of MusicTrack representing a standard music track.
+
+Song adds no new fields beyond what MusicTrack already stores.  Its only
+responsibility is to:
+  1. Call super().__init__() to let MusicTrack do the storage work.
+  2. Implement play_time_formatted() in MM:SS format.
+     Return the duration as 'MM:SS' (both parts zero-padded).
+
+        Examples
+        --------
+        220 seconds → '03:40'
+        65  seconds → '01:05'
+        
+  3. Override __str__ for a human-readable representation.
+     Return '(<artist>) <album>, duration: <MM:SS>'.
+
+        Example:
+            (Kendrick Lamar, Hip-Hop) DAMN. active = True,  debut year: 2017,
+            duration: 03:40
+"""
+from music_track import MusicTrack
+
+class Song(MusicTrack):
+   def __init__(self, artist, album, duration_seconds):
+      # let MusicTrack store the shared track information
+      super().__init__(artist, album, duration_seconds)
+
+   def play_time_formatted(self):
+      # Convert total seconds into whole minutes.
+      minutes = int(self._duration_seconds // 60)
+
+      # Find the remaining seconds after removing the minutes.
+      seconds = int(self._duration_seconds % 60)
+
+      # Return the duration in MM:SS format.
+      return f"{minutes:02}:{seconds:02}"
+
+   def __str__(self):
+      # Return a readable representation of the song.
+      return f"({self._artist}) {self._album}, duration: {self.play_time_formatted()}"     
