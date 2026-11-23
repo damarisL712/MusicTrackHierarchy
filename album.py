@@ -22,3 +22,19 @@ class Album:
 
     # store a copy of the years list
     self._years = years.copy()
+  
+  @property
+  def title(self):
+    # Return the album or show title
+    return self._title
+  
+  @property
+  def active(self):
+    # return whether the album or show is active
+    return self._active
+  
+  @property
+  def years(self):
+    # return a copy of years list so
+    # outside code can't change the inter list directly
+    return self._years.copy()
