@@ -27,26 +27,26 @@ class MusicTrack(ABC):
     self._album = album
     self._duration_seconds = duration_seconds
 
-    @property
-    def album(self):
-        # Return the Album object.
-        return self._album
+  @property
+  def album(self):
+    # Return the Album object.
+    return self._album
 
-    @property
-    def duration_seconds(self):
-        # Return the track duration in seconds.
-        return self._duration_seconds
+  @property
+  def duration_seconds(self):
+    # Return the track duration in seconds.
+    return self._duration_seconds
 
-    @property
-    def release_year(self):
-        # Return the debut year from the Album object.
-        return self._album.debut_year
+  @property
+  def release_year(self):
+    # Return the debut year from the Album object.
+    return self._album.debut_year
   
-    @abstractmethod
-    def play_time_formatted(self):
-        # Require each subclass to format its own play time.
-        pass
+  @abstractmethod
+  def play_time_formatted(self):
+    # Require each subclass to format its own play time.
+    pass
 
-    def total_play_time(self, num_plays):
-        # Return the total number of seconds for multiple plays.
-        return self._duration_seconds * num_plays
+  def total_play_time(self, num_plays):
+    # Return the total number of seconds for multiple plays.
+    return self._duration_seconds * num_plays
