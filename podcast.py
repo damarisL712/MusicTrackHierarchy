@@ -1,0 +1,60 @@
+"""
+Concrete subclass of MusicTrack representing a podcast episode.
+
+Podcast differs from Song in two ways:
+  1. It has one extra field: is_explicit (bool), defaulting to False.
+     The default value replaces Java-style constructor overloading — one
+     __init__ handles both the explicit and non-explicit cases.
+  2. play_time_formatted() returns 'HH:MM:SS' instead of 'MM:SS', because
+     podcast episodes are typically longer than an hour.
+
+    Return the duration as 'HH:MM:SS' (all parts zero-padded).
+
+        Examples
+        --------
+        9000 seconds → '02:30:00'
+        5400 seconds → '01:30:00'
+        3661 seconds → '01:01:01'
+
+ 3. Override __str__ for a human-readable representation.
+        Return '(<artist>) <album>, duration: <HH:MM:SS> is explicit: <bool>'.
+
+        Example:
+            (Joe Rogan, Comedy) The Joe Rogan Experience active = True,
+             debut year: 2009, duration: 02:30:00 is explicit: True
+"""
+
+from music_track import MusicTrack
+
+class Podcast(MusicTrack):
+   def __init__(self,artist, album, duration_seconds, is_explicit=False):
+      # let MusicTrack store the shared track information
+      super().__init__(artist, album, duration_seconds)
+
+      # store whether the poddcast episode contains explict content
+      self._is_explicit = is_explicit
+   
+   @property
+   def is_explicit(self):
+      # return whether the podcast episode is explicit
+      return self._is_explicit
+   
+   def play_time_formatted(self):
+      # Convert the total seconds into whole hours.
+      hours = int(self._duration_seconds // 3600)
+
+      # Find the remaining seconds after removing the hours.
+      remaining_seconds = int(self._duration_seconds % 3600)
+
+      # Convert the remaining seconds into whole minutes.
+      minutes = remaining_seconds // 60
+
+      # Find the seconds left after removing the minutes.
+      seconds = remaining_seconds % 60
+
+      # Return the duration in HH:MM:SS format.
+      return f"{hours:02}:{minutes:02}:{seconds:02}"
+
+   def __str__(self):
+      # Return a readable representation of the podcast episode.
+      return f"({self._artist}) {self._album}, duration: {self.play_time_formatted()} is explicit: {self._is_explicit}"
