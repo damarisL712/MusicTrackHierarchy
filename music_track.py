@@ -33,6 +33,11 @@ class MusicTrack(ABC):
     return self._album
 
   @property
+  def artist(self):
+    # Return the Artist object.
+    return self._artist
+
+  @property
   def duration_seconds(self):
     # Return the track duration in seconds.
     return self._duration_seconds
